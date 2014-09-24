@@ -1,6 +1,7 @@
 package com.sinaapp.filmview;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts.util.SecureRequestUtils;
 
 /**
  * Author: fanshen.fs
@@ -16,6 +17,11 @@ public class GettingStarted extends ActionSupport {
 
     public void setMyName(String myName) {
         this.myName = myName;
+    }
+
+    public String hello() {
+        myName = "Shen";
+        return "success";
     }
 
     public String execute() {

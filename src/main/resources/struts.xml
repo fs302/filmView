@@ -18,6 +18,14 @@
         <action name="Bootstrap">
             <result>/WEB-INF/pages/welcome.jsp</result>
         </action>
+        <action name="hello" class="com.sinaapp.filmview.GettingStarted" method="hello">
+            <result type="velocity">/WEB-INF/vm/test.vm</result>
+        </action>
+    </package>
+    <!--
+    <package name="demo" extends="struts-default">
+        <default-action-ref name="hello" />
 
     </package>
+    -->
 </struts>

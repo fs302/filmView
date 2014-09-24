@@ -49,9 +49,9 @@
 
     <div class="container">
         <div class="starter-template">
-                <form class="form-inline" role="search">
+                <form class="form-inline" role="search" action="hello">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." style="width:500px">
+                        <input type="text" class="form-control" placeholder="Search..." style="width:500px" name="name" />
                     </div>
                     <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
                 </form>
