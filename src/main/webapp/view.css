@@ -1,0 +1,28 @@
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Microsoft Yahei", tahoma, arial, sans-serif !important;
+}
+
+body {
+  padding-top: 70px;
+  font-family: "Microsoft Yahei", tahoma, arial, sans-serif !important;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.footer {
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 19px;
+    padding-bottom: 19px;
+    margin-top: 19px;
+}
+
+.footer>p>a:hover, .footer>p>a:focus {
+    text-decoration: none;
+}
+
+.img-center {
+    text-align: center;
+}
