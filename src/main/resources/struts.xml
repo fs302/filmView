@@ -22,6 +22,7 @@
             <result type="velocity">/WEB-INF/vm/test.vm</result>
         </action>
     </package>
+
     <!--
     <package name="demo" extends="struts-default">
         <default-action-ref name="hello" />
