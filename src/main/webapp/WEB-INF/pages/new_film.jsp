@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>LXT</title>
+    <title>NewFilm</title>
     <meta name="description" content="LLLLL！" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -37,8 +37,6 @@
 </head>
 <body class="archive-template">
 
-
-
 <div class="wrap">
     <nav class="navbar navbar-fixed-top head-nav" role="navigation">
         <div class="container">
@@ -63,60 +61,27 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="header" style="background-image: url(img/bg.jpg)">
+    <div class="backgr" style="background-image: url(/img/bg.jpg)">
         <div class="container">
-            <div class="search-bar">
-                <form class="form-inline " role="search">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <input type="text" class="input-lg input-bigger search" placeholder="Search..." />
-                            <button type="submit" class="btn abutton"><span class="glyphicon glyphicon-search"></span> </button>
+            <div class="col-md-8">
+                <div class="crawl-driver">
+                    <p class="bullet-concerns-title">Douban Film URL</p>
+                    <div class="url-form">
+                        <div class="row">
+                            <form action="#" method="post">
+                                <div class="col-md-9"><input name="url" class="form-control url-form" placeholder="Enter the douban page url">
+                                    <div class="help-block"><em>A second time, a film crawled for you.</em></div>
+                                </div>
+                                <div class="col-md-3"><button type="submit" class="btn btn-block btn-lg btn-success btn-timetap-success">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <input type="radio" name="iCheck" checked> <sb>全部</sb>
-                        <input type="radio" name="iCheck" > <sb>片名</sb>
-                        <input type="radio" name="iCheck" > <sb>导演</sb>
-                        <input type="radio" name="iCheck" > <sb>主演</sb>
-                        <input type="radio" name="iCheck" > <sb>类型</sb>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-
-    <main class="main" role="main">
-        <div class="container">
-            <div class="result">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th >FilmName </th>
-                        <th style="width:25%">Info </th>
-                        <th style="width:60%">Content </th>
-                        <th  style="width:10%">Review </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td align="center"><a href="http://movie.douban.com/subject/25789352/"> 心花路放</a></td>
-                        <td><table>
-
-                        </table></td>
-                        <td>.....</td>
-                        <td>.....</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-
 </div>
-
 <footer>
     <div class="container">
         <div class="row">

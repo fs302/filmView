@@ -3,9 +3,9 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
     <package name="default" extends="struts-default" namespace="/">
-        <default-action-ref name="home" />
+        <default-action-ref name="Bootstrap" />
         <action name="home">
             <result>/index.jsp</result>
         </action>
@@ -18,15 +18,20 @@
         <action name="Bootstrap">
             <result>/WEB-INF/pages/welcome.jsp</result>
         </action>
-        <action name="hello" class="com.sinaapp.filmview.GettingStarted" method="hello">
-            <result type="velocity">/WEB-INF/vm/test.vm</result>
+        <action name="newFilm">
+            <result>/WEB-INF/pages/new_film.jsp</result>
+        </action>
+        <action name="login">
+            <result>/WEB-INF/pages/login.jsp</result>
         </action>
     </package>
 
     <!--
     <package name="demo" extends="struts-default">
         <default-action-ref name="hello" />
-
+        <action name="hello">
+            <result type="velocity">/WEB-INF/vm/test.vm</result>
+        </action>
     </package>
     -->
 </struts>

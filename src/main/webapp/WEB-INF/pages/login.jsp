@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>LXT</title>
+    <title>Login</title>
     <meta name="description" content="LLLLL！" />
 
     <meta name="HandheldFriendly" content="True" />
@@ -37,8 +37,6 @@
 </head>
 <body class="archive-template">
 
-
-
 <div class="wrap">
     <nav class="navbar navbar-fixed-top head-nav" role="navigation">
         <div class="container">
@@ -63,60 +61,18 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="header" style="background-image: url(img/bg.jpg)">
+    <div class="backgr" style="background-image: url(img/bg.jpg)">
         <div class="container">
-            <div class="search-bar">
-                <form class="form-inline " role="search">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <input type="text" class="input-lg input-bigger search" placeholder="Search..." />
-                            <button type="submit" class="btn abutton"><span class="glyphicon glyphicon-search"></span> </button>
-                        </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="submit">
+                        <h1 class="text-center" style="color:#fff">Login page</h1>
                     </div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <input type="radio" name="iCheck" checked> <sb>全部</sb>
-                        <input type="radio" name="iCheck" > <sb>片名</sb>
-                        <input type="radio" name="iCheck" > <sb>导演</sb>
-                        <input type="radio" name="iCheck" > <sb>主演</sb>
-                        <input type="radio" name="iCheck" > <sb>类型</sb>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-
-    <main class="main" role="main">
-        <div class="container">
-            <div class="result">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th >FilmName </th>
-                        <th style="width:25%">Info </th>
-                        <th style="width:60%">Content </th>
-                        <th  style="width:10%">Review </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td align="center"><a href="http://movie.douban.com/subject/25789352/"> 心花路放</a></td>
-                        <td><table>
-
-                        </table></td>
-                        <td>.....</td>
-                        <td>.....</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-
 </div>
-
 <footer>
     <div class="container">
         <div class="row">
@@ -130,21 +86,21 @@
     </div>
 </footer>
 
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://cdn.bootcss.com/jquery.lazyload/1.9.0/jquery.lazyload.min.js"></script>
-<script src="http://cdn.bootcss.com/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
-<script src="js/icheck.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery.lazyload/1.9.0/jquery.lazyload.min.js"></script>
+    <script src="http://cdn.bootcss.com/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
+    <script src="js/icheck.js"></script>
 
-<script>
-    $(document).ready(function(){
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-grey',
-            radioClass: 'iradio_square-grey'
+    <script>
+        $(document).ready(function(){
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-grey',
+                radioClass: 'iradio_square-grey'
+            });
         });
-    });
-</script>
-<script type="text/javascript" src="http://www.bootcss.com/assets/js/index.min.js?v=63aa819c92"></script>
+    </script>
+    <script type="text/javascript" src="http://www.bootcss.com/assets/js/index.min.js?v=63aa819c92"></script>
 
 </body>
 </html>

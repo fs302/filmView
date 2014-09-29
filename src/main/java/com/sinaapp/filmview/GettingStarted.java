@@ -1,7 +1,6 @@
 package com.sinaapp.filmview;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts.util.SecureRequestUtils;
 
 /**
  * Author: fanshen.fs
@@ -10,6 +9,7 @@ import org.apache.struts.util.SecureRequestUtils;
 public class GettingStarted extends ActionSupport {
 
     private String myName;
+    private String baby;
 
     public String getMyName() {
         return myName;
@@ -20,7 +20,7 @@ public class GettingStarted extends ActionSupport {
     }
 
     public String hello() {
-        myName = "Shen";
+        baby = "T";
         return "success";
     }
 
