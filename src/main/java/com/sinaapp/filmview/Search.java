@@ -49,7 +49,7 @@ public class Search extends ActionSupport {
 
     public FilmInfo getFilmInfo(String query, String type) {
 
-        //≈‰÷√ ˝æ›ø‚
+
         String driver = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmView";
         String user = "yoykwo0k5x";

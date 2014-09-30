@@ -1,9 +1,5 @@
 package com.sinaapp.filmview;
 
-/*
-  电影信息封装类
-  包括：电影名，导演，主角姓名，电影类型，上映时间，电影评分，电影简介，电影评语
- */
 public class FilmInfo {
 
         private String filmName ;
