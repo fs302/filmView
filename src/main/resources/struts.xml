@@ -5,23 +5,26 @@
 <struts>
     <constant name="struts.devMode" value="false" />
     <package name="default" extends="struts-default" namespace="/">
-        <default-action-ref name="Bootstrap" />
+        <default-action-ref name="index" />
         <action name="home">
-            <result>/index.jsp</result>
+            <result>/search.jsp</result>
         </action>
-        <action name="gettingStarted">
-            <result>/WEB-INF/pages/first_action_input.jsp</result>
+        <action name="index">
+            <result>/WEB-INF/pages/search.jsp</result>
         </action>
-        <action name="myFirstAction" class="com.sinaapp.filmview.GettingStarted">
-            <result name="success">/WEB-INF/pages/first_action_result.jsp</result>
-        </action>
-        <action name="Bootstrap">
-            <result>/WEB-INF/pages/welcome.jsp</result>
+        <action name="search" class="com.sinaapp.filmview.Search">
+            <result name="success">/WEB-INF/pages/search.jsp</result>
         </action>
         <action name="newFilm">
             <result>/WEB-INF/pages/new_film.jsp</result>
         </action>
         <action name="login">
+            <result>/WEB-INF/pages/login.jsp</result>
+        </action>
+    </package>
+
+    <package name="backup" extends="struts-default" namespace="">
+        <action name="index">
             <result>/WEB-INF/pages/login.jsp</result>
         </action>
     </package>

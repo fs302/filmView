@@ -2,9 +2,6 @@ h1,h2,h3,h4,h5,h6 {
 	font-family: "Microsoft Yahei", tahoma, arial, sans-serif !important;
 }
 
-.header.sb {
-    font-family: "Microsoft Yahei", tahoma, arial, sans-serif !important; color: #fff;
-}
 .head-nav {
     background-color: rgba(255,255,255,.3);
     position: relative;
@@ -20,6 +17,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .header{
+    font-family: "Microsoft Yahei", tahoma, arial, sans-serif !important; color: #fff;
     background:#222;
     background-repeat:no-repeat;
     background-position:center 0;

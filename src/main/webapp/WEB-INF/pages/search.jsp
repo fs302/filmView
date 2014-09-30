@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+    String path = request.getContextPath();
+    String basepath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -16,17 +20,15 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+    <link rel="shortcut icon" type="image/x-icon" href="<%=basepath%>favicon.ico" media="screen" />
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-    <link href="http://cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/Metrize-Icons/1.0.0/style.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/magnific-popup.js/0.9.9/magnific-popup.css" rel="stylesheet">
 
-    <link href="skin/square/grey.css" rel="stylesheet">
+
+    <link href="<%=basepath%>skin/square/grey.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
-    <link href="view.css" rel="stylesheet">
+    <link href="<%=basepath%>view.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -63,22 +65,22 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="header" style="background-image: url(img/bg.jpg)">
+    <div class="header" style="background-image: url(<%=basepath%>img/bg.jpg)">
         <div class="container">
             <div class="search-bar">
-                <form class="form-inline " role="search">
+                <form class="form-inline " role="search" action="search" namespace="/" method="get">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <input type="text" class="input-lg input-bigger search" placeholder="Search..." />
+                            <input name="query" type="text" class="input-lg input-bigger search" placeholder="Search..." />
                             <button type="submit" class="btn abutton"><span class="glyphicon glyphicon-search"></span> </button>
                         </div>
                     </div>
                     <div class="col-md-4 col-md-offset-4">
-                        <input type="radio" name="iCheck" checked> <sb>全部</sb>
-                        <input type="radio" name="iCheck" > <sb>片名</sb>
-                        <input type="radio" name="iCheck" > <sb>导演</sb>
-                        <input type="radio" name="iCheck" > <sb>主演</sb>
-                        <input type="radio" name="iCheck" > <sb>类型</sb>
+                        <input type="radio" name="type" value="all" checked> 全部
+                        <input type="radio" name="type" value="name"> 片名
+                        <input type="radio" name="type" value="director"> 导演
+                        <input type="radio" name="type" value="star"> 主演
+                        <input type="radio" name="type" value="type"> 类型
                     </div>
                 </form>
             </div>
@@ -103,11 +105,9 @@
                     <tr>
                         <td>1</td>
                         <td align="center"><a href="http://movie.douban.com/subject/25789352/"> 心花路放</a></td>
-                        <td><table>
-
-                        </table></td>
-                        <td>.....</td>
-                        <td>.....</td>
+                        <td><s:property value="Context"/></td>
+                        <td><s:property value="query"/></td>
+                        <td><s:property value="type"/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -134,7 +134,7 @@
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery.lazyload/1.9.0/jquery.lazyload.min.js"></script>
 <script src="http://cdn.bootcss.com/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
-<script src="js/icheck.js"></script>
+<script src="<%=basepath%>js/icheck.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -144,7 +144,6 @@
         });
     });
 </script>
-<script type="text/javascript" src="http://www.bootcss.com/assets/js/index.min.js?v=63aa819c92"></script>
 
 </body>
 </html>

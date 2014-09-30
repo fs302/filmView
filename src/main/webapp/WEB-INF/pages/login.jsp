@@ -18,15 +18,13 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-    <link href="http://cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/Metrize-Icons/1.0.0/style.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/magnific-popup.js/0.9.9/magnific-popup.css" rel="stylesheet">
 
-    <link href="skin/square/grey.css" rel="stylesheet">
+
+    <link href="<%=basepath%>skin/square/grey.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
-    <link href="view.css" rel="stylesheet">
+    <link href="<%=basepath%>view.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -61,7 +59,7 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="backgr" style="background-image: url(img/bg.jpg)">
+    <div class="backgr" style="background-image: url(<%=basepath%>img/bg.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -100,7 +98,6 @@
             });
         });
     </script>
-    <script type="text/javascript" src="http://www.bootcss.com/assets/js/index.min.js?v=63aa819c92"></script>
 
 </body>
 </html>
