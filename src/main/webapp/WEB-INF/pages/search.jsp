@@ -51,11 +51,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">FilmView</a>
+                <a class="navbar-brand" href="home">FilmView</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">查询</a></li>
+                    <li class="active"><a href="search">查询</a></li>
                     <li><a href="newFilm">新增</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -104,7 +104,7 @@
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td align="center"><a href="http://movie.douban.com/subject/25789352/"> 心花路放</a></td>
+                        <td align="center"><a href="http://movie.douban.com/subject/25717233/"> 心花路放</a></td>
                         <td><s:property value="Context"/></td>
                         <td><s:property value="query"/></td>
                         <td><s:property value="type"/></td>

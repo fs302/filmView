@@ -43,7 +43,7 @@ public class Search extends ActionSupport {
 
     public String execute() {
         Context = query + type;
-
+        System.out.println(Context);
         return SUCCESS;
     }
 

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s" %>
+<%
+    String path = request.getContextPath();
+    String basepath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -45,11 +49,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">FilmView</a>
+                <a class="navbar-brand" href="home">FilmView</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">查询</a></li>
+                    <li class="active"><a href="search">查询</a></li>
                     <li><a href="newFilm">新增</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -65,6 +69,7 @@
                 <div class="col-xs-12">
                     <div class="submit">
                         <h1 class="text-center" style="color:#fff">Login page</h1>
+                        <p><s:property value="filmHtmlDoc"/></p>
                     </div>
                 </div>
             </div>

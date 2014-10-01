@@ -4,12 +4,10 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
     <constant name="struts.devMode" value="false" />
+    <!--<constant name="struts.i18n.encoding" value="GBK"/>-->
     <package name="default" extends="struts-default" namespace="/">
-        <default-action-ref name="index" />
+        <default-action-ref name="home" />
         <action name="home">
-            <result>/search.jsp</result>
-        </action>
-        <action name="index">
             <result>/WEB-INF/pages/search.jsp</result>
         </action>
         <action name="search" class="com.sinaapp.filmview.Search">
@@ -17,6 +15,9 @@
         </action>
         <action name="newFilm">
             <result>/WEB-INF/pages/new_film.jsp</result>
+        </action>
+        <action name="film_add" class="com.sinaapp.filmview.FilmCrawler" method="fetch">
+            <result>/WEB-INF/pages/login.jsp</result>
         </action>
         <action name="login">
             <result>/WEB-INF/pages/login.jsp</result>
