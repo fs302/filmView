@@ -20,7 +20,7 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+    <link rel="shortcut icon" type="image/x-icon" href="<%=basepath%>favicon.ico" media="screen" />
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 
 
@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="submit">
-                    <p class="text-center"><a href="mailto:lxt@uestc.edu.cn">lxt@uestc.edu.cn</a> </p>
+                    <p class="text-center"><a href="mailto:lxt@gmail.edu.cn">lxt@gmail.edu.cn</a> </p>
                     <p><h2 class="text-center">Kindle</h2></p>
                 </div>
             </div>

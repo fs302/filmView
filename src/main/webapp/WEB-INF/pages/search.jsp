@@ -91,31 +91,29 @@
     <main class="main" role="main">
         <div class="container">
             <div class="result">
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th >FilmName </th>
-                        <th style="width:25%">Info </th>
-                        <th style="width:60%">Content </th>
-                        <th  style="width:10%">Review </th>
+                        <th style="width:15%"></th>
+                        <th ></th>
                     </tr>
                     </thead>
                     <tbody>
                     <s:iterator value="%{filmInfos}" id="film"   status="status">
                         <tr>
-                            <td><s:property value='#status.index+1'/></td>
-                            <td><s:property value='%{filmName}' escape="false"/> </td>
-                            <td><table>
-                                <tr><td>导演：</td><td><s:property value='%{director}' escape="false"/></td></tr>
-                                <tr><td>主演：</td><td><s:property value='starring' escape="false"/></td></tr>
-                                <tr><td>类型：</td><td><s:property value='filmType' escape="false"/></td></tr>
-                                <tr><td>上映时间：</td><td><s:property value='filmTime' escape="false"/></td></tr>
-                                <tr><td>评分：</td><td><s:property value='score'/></td></tr>
+                            <td><table><tr><td align=center>【<s:property value='#status.index+1'/>】</td></tr>
+                                <tr><td align=center><img src="<%=basepath%>pics<s:property value='picUrl' escape="false"/>" /></td></tr>
+                                <tr><td align=center>上映时间：<s:property value='filmTime' escape="false"/></td></tr>
+                                <tr><td align=center>类型：<s:property value='filmType' escape="false"/></td></tr>
+                                <tr><td align=center>评分：<s:property value='score'/></td></tr>
+                            </table></td>
+                            <td><table class="table-hover">
+                                <tr class="success"><td  align=center ><h4><s:property value='%{filmName}' escape="false"/></h4></td></tr>
+                                <tr class="active"><td>导演：<s:property value='%{director}' escape="false"/></td></tr>
+                                <tr class="active"><td>主演：<s:property value='starring' escape="false"/></td></tr>
+                                <tr class="info"><td>剧情简介:<br/><s:property value='filmIntro' escape="false"/> </td></tr>
                             </table>
                             </td>
-                            <td><s:property value='filmIntro' escape="false"/> </td>
-                            <td><s:property value='filmReview' escape="false"/> </td>
                         </tr>
                     </s:iterator>
                     </tbody>
@@ -131,7 +129,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="submit">
-                    <p class="text-center"><a href="mailto:lxt@uestc.edu.cn">lxt@uestc.edu.cn</a> </p>
+                    <p class="text-center"><a href="mailto:lxt@gmail.edu.cn">lxt@gmail.edu.cn</a> </p>
                     <p><h2 class="text-center">Kindle</h2></p>
                 </div>
             </div>

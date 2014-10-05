@@ -1,10 +1,20 @@
 package com.sinaapp.filmview;
 
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.ResultSet;
@@ -106,8 +116,19 @@ public class FilmCrawler extends ActionSupport {
                 return null;
             }
             String filmReview = doc.select("#hot-comments > div:nth-child(1) > div > p").text().replaceAll("\"", "\'"); //电影评语
-
-            FilmInfo film = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview);
+            String picUrl = doc.select("#mainpic > a > img").attr("src");
+            if (picUrl != null){
+                try {
+                    savePic(picUrl);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                picUrl = picUrl.substring(picUrl.lastIndexOf("/"));
+            }
+            else{
+                picUrl = "";
+            }
+            FilmInfo film = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview,picUrl);
             System.out.println("getFilmFromDocument: " + film);
             return film;
         } catch (Exception e) {
@@ -169,12 +190,7 @@ public class FilmCrawler extends ActionSupport {
 
                 // 执行SQL语句
                 ResultSet rs = statement.executeQuery(sql);
-                if (rs.next()) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
+                return !rs.next();
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -183,6 +199,58 @@ public class FilmCrawler extends ActionSupport {
         }
         return false;
     }
+    public static void savePic(String picUrl) throws Exception {
 
+        ClassLoader classLoader = Thread.currentThread()
+                .getContextClassLoader();
+        if (classLoader == null) {
+            classLoader = ClassLoader.getSystemClassLoader();
+        }
+        java.net.URL url = classLoader.getResource("");
+        String ROOT_CLASS_PATH = url.getPath() + "/";
+        File rootFile = new File(ROOT_CLASS_PATH);
+        String WEB_INFO_DIRECTORY_PATH = rootFile.getParent() + "/";
+        File webInfoDir = new File(WEB_INFO_DIRECTORY_PATH);
+        String SERVLET_CONTEXT_PATH = webInfoDir.getParent() + "/";
+
+        String PIC_DIR = SERVLET_CONTEXT_PATH +"pics";
+
+        String fileName = picUrl.substring(picUrl.lastIndexOf("/"));
+        String filePath = PIC_DIR + "/" + fileName;
+        System.out.println(filePath);
+        BufferedOutputStream out = null;
+        byte[] bit = getByte(picUrl);
+        if (bit.length > 0) {
+            try {
+                out = new BufferedOutputStream(new FileOutputStream(filePath));
+                out.write(bit);
+                out.flush();
+
+            } finally {
+                if (out != null) {
+                    out.close();
+                }
+            }
+        }
+    }
+
+    public static byte[] getByte(String uri) throws Exception{
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(uri);
+        CloseableHttpResponse response = httpClient.execute(httpGet);
+        try {
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    return EntityUtils.toByteArray(entity);
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally{
+            response.close();
+        }
+        return new byte[0];
+    }
 
 }

@@ -57,10 +57,15 @@ public class Search extends ActionSupport {
         }
         else {
             List<FilmInfo> queryResult = getFilmInfo("","filmName");
-            filmInfos = queryResult.subList(0,10);
+            if (queryResult != null && queryResult.size()>10){
+                filmInfos = queryResult.subList(0,10);
+            }
+            else {
+                filmInfos = queryResult;
+            }
 
         }
-        if (!filmInfos.isEmpty()){
+        if (filmInfos != null && !filmInfos.isEmpty()){
             for(FilmInfo f:filmInfos) {
                 System.out.println(f.getFilmName());
             }
@@ -108,7 +113,8 @@ public class Search extends ActionSupport {
                     Double score = Double.parseDouble(rs.getString("score"));
                     String filmIntro = tagQuery(rs.getString("filmIntro"),query) ;
                     String filmReview =  rs.getString("filmReview");
-                    FilmInfo filmInfo = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview);
+                    String picUrl = rs.getString("picUrl");
+                    FilmInfo filmInfo = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview,picUrl);
                     result.add(filmInfo);
                 }
                 conn.close();
@@ -133,13 +139,14 @@ public class Search extends ActionSupport {
         Connection conn = null;
 
         String driver = "com.mysql.jdbc.Driver";
-//        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmview";
-//        String user = "yoykwo0k5x";
-//        String password = "k2x0zyx4m31lwz1hjiylxyhjjm20h5mzlxmmlxh5";
 
-        String url = "jdbc:mysql://127.0.0.1:3306/filmInfoSystem";
-        String user = "root";
-        String password = "root";
+        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmview";
+        String user = "yoykwo0k5x";
+        String password = "k2x0zyx4m31lwz1hjiylxyhjjm20h5mzlxmmlxh5";
+
+//        String url = "jdbc:mysql://127.0.0.1:3306/filmInfoSystem";
+//        String user = "root";
+//        String password = "root";
 
         try {
             Class.forName(driver);
