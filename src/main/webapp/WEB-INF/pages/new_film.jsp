@@ -66,7 +66,7 @@
         <div class="container">
             <div class="col-md-8">
                 <div class="crawl-driver">
-                    <p class="bullet-concerns-title">Douban Film URL</p>
+                    <p class="bullet-concerns-title"><a href="http://movie.douban.com/" class="Douban">Douban Film URL</a></p>
                     <div class="url-form">
                         <div class="row">
                             <form action="film_add" method="post">

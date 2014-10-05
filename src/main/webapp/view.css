@@ -42,7 +42,7 @@ h1,h2,h3,h4,h5,h6 {
     background-repeat:no-repeat;
     background-position:center 0;
     background-size:cover;
-    min-height:700px;
+    min-height:600px;
     padding:158px 0 0;
     margin-top: -20px;
     margin-bottom: -40px;
@@ -52,10 +52,7 @@ body {
   background: #efeee4;
   font-family: "Microsoft Yahei", tahoma, arial, sans-serif !important;
 }
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
-}
+
 
 .img-center {
     text-align: center;
@@ -138,6 +135,17 @@ body {
     margin-bottom: 5px;
     margin-top: 50px;
     margin-left: 90px;
+}
+
+.Douban{
+    color:#fff
+}
+
+.crawl-result {
+    background: rgba(255,255,255,.5);
+    margin-top: -120px;
+    padding: 50px;
+    margin-bottom: 20px;
 }
 
 .url-form {

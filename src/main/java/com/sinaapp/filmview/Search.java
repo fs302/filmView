@@ -57,10 +57,13 @@ public class Search extends ActionSupport {
         }
         else {
             List<FilmInfo> queryResult = getFilmInfo("","filmName");
-            filmInfos = queryResult.subList(0,20);
+            filmInfos = queryResult.subList(0,10);
+
         }
-        for(FilmInfo f:filmInfos) {
-            System.out.println(f.getFilmName());
+        if (!filmInfos.isEmpty()){
+            for(FilmInfo f:filmInfos) {
+                System.out.println(f.getFilmName());
+            }
         }
         return SUCCESS;
     }
@@ -90,21 +93,21 @@ public class Search extends ActionSupport {
 
                 List<FilmInfo> result = new ArrayList<FilmInfo>();
                 while(rs.next()) {
-                    String filmName = rs.getString("filmName");
-                    String director = rs.getString("director");
+                    String filmName = tagQuery(rs.getString("filmName"),query);
+                    String director = tagQuery(rs.getString("director"),query) ;
                     String[] starringContent = rs.getString("starring").split(":");
                     String starring="";
                     if (starringContent != null && starringContent.length>1) {
-                        starring = starringContent[1];
+                        starring = tagQuery(starringContent[1],query) ;
                     }
                     else {
-                        starring = rs.getString("starring");
+                        starring = tagQuery(rs.getString("starring"),query);
                     }
-                    String filmType = rs.getString("filmType");
-                    String filmTime = rs.getString("filmTime");
+                    String filmType = tagQuery(rs.getString("filmType"),query) ;
+                    String filmTime = rs.getString("filmTime") ;
                     Double score = Double.parseDouble(rs.getString("score"));
-                    String filmIntro = rs.getString("filmIntro");
-                    String filmReview = rs.getString("filmReview");
+                    String filmIntro = tagQuery(rs.getString("filmIntro"),query) ;
+                    String filmReview =  rs.getString("filmReview");
                     FilmInfo filmInfo = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview);
                     result.add(filmInfo);
                 }
@@ -119,19 +122,25 @@ public class Search extends ActionSupport {
         return null;
     }
 
+    public static String tagQuery(String content, String query) {
+        if (query.length()>1){
+            return content.replaceAll(query,"<b>"+query+"</b>");
+        }
+        return content;
+    }
+
     public static Connection getConnection(){
         Connection conn = null;
 
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmView";
-        String user = "yoykwo0k5x";
-        String password = "k2x0zyx4m31lwz1hjiylxyhjjm20h5mzlxmmlxh5";
+//        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmview";
+//        String user = "yoykwo0k5x";
+//        String password = "k2x0zyx4m31lwz1hjiylxyhjjm20h5mzlxmmlxh5";
 
-        /*
         String url = "jdbc:mysql://127.0.0.1:3306/filmInfoSystem";
         String user = "root";
         String password = "root";
-        */
+
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url,user, password);

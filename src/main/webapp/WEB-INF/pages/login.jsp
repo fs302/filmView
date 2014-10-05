@@ -68,11 +68,12 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="submit">
+                        <form action="home" method="post">
                         <h1 class="text-center" style="color:#fff">Login</h1>
                         <div class="form-group string required user_username"><input autofocus="autofocus" class="string required form-control input-lg" id="user_username" maxlength="255" name="user[username]" placeholder="用户名" size="255" type="text" /></div>
                         <div class="form-group password required user_password"><input autofocus="autofocus" class="password required form-control input-lg" id="user_password" maxlength="128" name="user[password]" placeholder="密码" size="128" type="password" /></div>
-                        <button type="button" class="btn btn-info">登录</button> <button type="button" class="btn btn-success">重置</button>
-
+                        <button type="submit" class="btn btn-info">登录</button> <button type="button" class="btn btn-success">重置</button>
+                        </form>
                     </div>
                 </div>
             </div>

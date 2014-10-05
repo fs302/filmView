@@ -14,13 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>LXT</title>
-    <meta name="description" content="LLLLL！" />
+    <title>电影信息</title>
+    <meta name="description" content="新增电影信息！" />
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="<%=basepath%>favicon.ico" media="screen" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 
 
@@ -38,8 +38,6 @@
 
 </head>
 <body class="archive-template">
-
-
 
 <div class="wrap">
     <nav class="navbar navbar-fixed-top head-nav" role="navigation">
@@ -65,67 +63,28 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="header" style="background-image: url(<%=basepath%>img/bg.jpg)">
+    <div class="backgr" style="background-image: url(<%=basepath%>img/bg.jpg)">
         <div class="container">
-            <div class="search-bar">
-                <form class="form-inline " role="search" action="search" namespace="/" method="get">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <input name="query" type="text" class="input-lg input-bigger search" placeholder="Search..." />
-                            <button type="submit" class="btn abutton"><span class="glyphicon glyphicon-search"></span> </button>
-                        </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <s:set name="saved" value="saved"/>
+                    <s:if test="%{#saved=='true'}">
+                        <h1>电影保存成功！</h1>
+                    </s:if>
+                    <s:elseif test="%{#saved=='Exists'}">
+                        <h1>电影已经存在。</h1>
+                    </s:elseif>
+                    <s:else>
+                        <h1>保存失败TT，请重试。</h1>
+                    </s:else>
+                    <div class="col-md-3">
+                        <a href="newFilm"><button class="btn btn-danger">返回</button></a>
                     </div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <input type="radio" name="type" value="all" checked> 全部
-                        <input type="radio" name="type" value="filmName"> 片名
-                        <input type="radio" name="type" value="director"> 导演
-                        <input type="radio" name="type" value="starring"> 主演
-                        <input type="radio" name="type" value="filmType"> 类型
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-
-    <main class="main" role="main">
-        <div class="container">
-            <div class="result">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th >FilmName </th>
-                        <th style="width:25%">Info </th>
-                        <th style="width:60%">Content </th>
-                        <th  style="width:10%">Review </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <s:iterator value="%{filmInfos}" id="film"   status="status">
-                        <tr>
-                            <td><s:property value='#status.index+1'/></td>
-                            <td><s:property value='%{filmName}' escape="false"/> </td>
-                            <td><table>
-                                <tr><td>导演：</td><td><s:property value='%{director}' escape="false"/></td></tr>
-                                <tr><td>主演：</td><td><s:property value='starring' escape="false"/></td></tr>
-                                <tr><td>类型：</td><td><s:property value='filmType' escape="false"/></td></tr>
-                                <tr><td>上映时间：</td><td><s:property value='filmTime' escape="false"/></td></tr>
-                                <tr><td>评分：</td><td><s:property value='score'/></td></tr>
-                            </table>
-                            </td>
-                            <td><s:property value='filmIntro' escape="false"/> </td>
-                            <td><s:property value='filmReview' escape="false"/> </td>
-                        </tr>
-                    </s:iterator>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-
 </div>
-
 <footer>
     <div class="container">
         <div class="row">
@@ -143,7 +102,7 @@
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://cdn.bootcss.com/jquery.lazyload/1.9.0/jquery.lazyload.min.js"></script>
 <script src="http://cdn.bootcss.com/magnific-popup.js/0.9.9/jquery.magnific-popup.min.js"></script>
-<script src="<%=basepath%>js/icheck.js"></script>
+<script src="js/icheck.js"></script>
 
 <script>
     $(document).ready(function(){
