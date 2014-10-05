@@ -77,10 +77,10 @@
                     </div>
                     <div class="col-md-4 col-md-offset-4">
                         <input type="radio" name="type" value="all" checked> 全部
-                        <input type="radio" name="type" value="name"> 片名
+                        <input type="radio" name="type" value="filmName"> 片名
                         <input type="radio" name="type" value="director"> 导演
-                        <input type="radio" name="type" value="star"> 主演
-                        <input type="radio" name="type" value="type"> 类型
+                        <input type="radio" name="type" value="starring"> 主演
+                        <input type="radio" name="type" value="filmType"> 类型
                     </div>
                 </form>
             </div>
@@ -102,13 +102,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td align="center"><a href="http://movie.douban.com/subject/25717233/"> 心花路放</a></td>
-                        <td><s:property value="Context"/></td>
-                        <td><s:property value="query"/></td>
-                        <td><s:property value="type"/></td>
-                    </tr>
+                    <s:iterator value="%{filmInfos}" id="film"   status="status">
+                        <tr>
+                            <td><s:property value='#status.index+1'/></td>
+                            <td><s:property value='filmName'/> </td>
+                            <td><table>
+                                <tr><td>导演：</td><td><s:property value='director'/></td></tr>
+                                <tr><td>主演：</td><td><s:property value='starring'/></td></tr>
+                                <tr><td>类型：</td><td><s:property value='filmType'/></td></tr>
+                                <tr><td>上映时间：</td><td><s:property value='filmTime'/></td></tr>
+                                <tr><td>评分：</td><td><s:property value='score'/></td></tr>
+                            </table>
+                            </td>
+                            <td><s:property value='filmIntro'/> </td>
+                            <td><s:property value='filmReview'/> </td>
+                        </tr>
+                    </s:iterator>
                     </tbody>
                 </table>
             </div>

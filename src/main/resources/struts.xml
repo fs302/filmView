@@ -7,7 +7,7 @@
     <!--<constant name="struts.i18n.encoding" value="GBK"/>-->
     <package name="default" extends="struts-default" namespace="/">
         <default-action-ref name="home" />
-        <action name="home">
+        <action name="home" class="com.sinaapp.filmview.Search">
             <result>/WEB-INF/pages/search.jsp</result>
         </action>
         <action name="search" class="com.sinaapp.filmview.Search">
