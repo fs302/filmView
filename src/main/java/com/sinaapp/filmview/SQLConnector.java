@@ -19,13 +19,13 @@ public class SQLConnector {
 
         String driver = "com.mysql.jdbc.Driver";
 
-//        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmview";
-//        String user = "yoykwo0k5x";
-//        String password = "k2x0zyx4m31lwz1hjiylxyhjjm20h5mzlxmmlxh5";
+        String url = "jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_filmview";
+        String user = "yoykwo0k5x";
+        String password = "k2x0zyx4m31lwz1hjiylxyhjjm20h5mzlxmmlxh5";
 
-        String url = "jdbc:mysql://127.0.0.1:3306/filmInfoSystem";
-        String user = "root";
-        String password = "root";
+//        String url = "jdbc:mysql://127.0.0.1:3306/filmInfoSystem";
+//        String user = "root";
+//        String password = "root";
 
         try {
             Class.forName(driver);

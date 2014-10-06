@@ -88,6 +88,7 @@ public class Search extends ActionSupport {
                             +" OR "+"filmReview"+" LIKE "+"\'%"+query+"%\'"
                     ;
                 }
+                sql = sql + "ORDER BY  `score` DESC";
                 if (count != -1){
                     sql = sql+" LIMIT "+count;
                 }

@@ -75,12 +75,13 @@
                             <button type="submit" class="btn abutton"><span class="glyphicon glyphicon-search"></span> </button>
                         </div>
                     </div>
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-5 col-md-offset-3">
                         <input type="radio" name="type" value="all" checked> 全部
                         <input type="radio" name="type" value="filmName"> 片名
                         <input type="radio" name="type" value="director"> 导演
                         <input type="radio" name="type" value="starring"> 主演
                         <input type="radio" name="type" value="filmType"> 类型
+                        <input type="radio" name="type" value="filmIntro"> 剧情
                     </div>
                 </form>
             </div>
@@ -91,6 +92,9 @@
     <main class="main" role="main">
         <div class="container">
             <div class="result">
+                <p class="text-right">
+                共有<strong><s:property value='filmInfos.size()'/></strong>个记录，按评分高低排序。
+                </p>
                 <table class="table">
                     <thead>
                     <tr>
