@@ -22,6 +22,9 @@
         <action name="save_film" class="com.sinaapp.filmview.FilmSaver" method="saveFilm">
             <result>/WEB-INF/pages/save_film.jsp</result>
         </action>
+        <action name="delete" class="com.sinaapp.filmview.FilmDAO" method="delete">
+            <result>/WEB-INF/pages/delete.jsp</result>
+        </action>
         <action name="login">
             <result>/WEB-INF/pages/login.jsp</result>
         </action>

@@ -14,14 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>新增电影</title>
-    <meta name="description" content="LLLLL！" />
+    <title>删除电影</title>
+    <meta name="description" content="删除电影！" />
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
 
     <link rel="shortcut icon" type="image/x-icon" href="<%=basepath%>favicon.ico" media="screen" />
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
 
     <link href="<%=basepath%>skin/square/grey.css" rel="stylesheet">
 
@@ -64,19 +65,17 @@
     </nav>
     <div class="backgr" style="background-image: url(<%=basepath%>img/bg.jpg)">
         <div class="container">
-            <div class="col-md-8">
-                <div class="crawl-driver">
-                    <p class="bullet-concerns-title"><a href="http://movie.douban.com/" class="Douban">Douban Film URL</a></p>
-                    <div class="url-form">
-                        <div class="row">
-                            <form action="film_add" method="get">
-                                <div class="col-md-9"><input name="url" class="form-control url-form" placeholder="Enter the douban page url">
-                                    <div class="help-block"><em>A second time, a film crawled for you.</em></div>
-                                </div>
-                                <div class="col-md-3"><button type="submit" class="btn btn-block btn-lg btn-success btn-timetap-success">Submit</button>
-                                </div>
-                            </form>
-                        </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <s:set name="callback" value="callback"/>
+                    <s:if test="%{#callback=='true'}">
+                        <h1>电影删除成功！</h1>
+                    </s:if>
+                    <s:else>
+                        <h1>删除失败TT，请重试。</h1>
+                    </s:else>
+                    <div class="col-md-3">
+                        <a href="search"><button class="btn btn-danger"><span class="glyphicon glyphicon-step-backward"></span> 返回</button></a>
                     </div>
                 </div>
             </div>
@@ -110,7 +109,6 @@
         });
     });
 </script>
-
 
 </body>
 </html>

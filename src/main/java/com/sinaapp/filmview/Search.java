@@ -18,17 +18,8 @@ public class Search extends ActionSupport {
 
     String type;
     String query;
-    String Context;
 
     List<FilmInfo> filmInfos;
-
-    public String getContext() {
-        return Context;
-    }
-
-    public void setContext(String context) {
-        Context = context;
-    }
 
     public String getType() {
         return type;
@@ -55,13 +46,13 @@ public class Search extends ActionSupport {
     }
 
     public String execute() {
-        if (query != null && query != ""){
+        if (query != null){
             logger.info("query:" + query + ", type:" + type);
-            filmInfos = getFilmInfo(query, type);
+            filmInfos = getFilmInfo(query, type,-1);
         }
         else {
-            List<FilmInfo> queryResult = getFilmInfo("","filmName");
-            if (queryResult != null && queryResult.size()>10){
+            List<FilmInfo> queryResult = getFilmInfo("","filmName",20);
+            if (queryResult != null && queryResult.size()>=10){
                 filmInfos = queryResult.subList(0,10);
             }
             else {
@@ -69,11 +60,13 @@ public class Search extends ActionSupport {
             }
 
         }
-
         return SUCCESS;
     }
 
-    public static List<FilmInfo> getFilmInfo(String query, String type) {
+    /**
+     * 获取满足条件的电影列表
+     */
+    public static List<FilmInfo> getFilmInfo(String query, String type, Integer count) {
 
         Connection conn = SQLConnector.getConnection();
         if (conn != null){
@@ -82,10 +75,11 @@ public class Search extends ActionSupport {
                 String tableName = "film";
                 String sql;
                 if (!type.equals("all")) {
+                    // 特定类型查询
                     sql = "SELECT * FROM "+tableName+" WHERE "+type+" LIKE "+"\'%"+query+"%\'";
-                    logger.info(sql);
                 }
                 else {
+                    // 全文查询
                     sql = "SELECT * FROM "+tableName+" WHERE "+"filmName"+" LIKE "+"\'%"+query+"%\'"
                             +" OR "+"director"+" LIKE "+"\'%"+query+"%\'"
                             +" OR "+"starring"+" LIKE "+"\'%"+query+"%\'"
@@ -94,6 +88,10 @@ public class Search extends ActionSupport {
                             +" OR "+"filmReview"+" LIKE "+"\'%"+query+"%\'"
                     ;
                 }
+                if (count != -1){
+                    sql = sql+" LIMIT "+count;
+                }
+                logger.info(sql);
                 ResultSet rs = statement.executeQuery(sql);
 
                 List<FilmInfo> result = new ArrayList<FilmInfo>();
@@ -112,12 +110,19 @@ public class Search extends ActionSupport {
                     String filmTime = rs.getString("filmTime") ;
                     Double score = Double.parseDouble(rs.getString("score"));
                     String filmIntro = tagQuery(rs.getString("filmIntro"),query) ;
-                    String filmReview =  rs.getString("filmReview");
+                    String filmReview =  tagQuery(rs.getString("filmReview"),query);
                     String picUrl = rs.getString("picUrl");
                     if (picUrl != null) {
                         picUrl = picUrl.substring(picUrl.lastIndexOf('/'));
                     }
-                    FilmInfo filmInfo = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview,picUrl);
+                    FilmInfo filmInfo;
+                    Integer id = rs.getInt("id");
+                    if (id != null) {
+                        filmInfo = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview,picUrl,id);
+                    }
+                    else {
+                        filmInfo = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview,picUrl);
+                    }
                     result.add(filmInfo);
                 }
                 conn.close();
@@ -139,7 +144,7 @@ public class Search extends ActionSupport {
     }
 
     public static void main(String[] args){
-        List<FilmInfo> queryResult = getFilmInfo("","filmName");
+        List<FilmInfo> queryResult = getFilmInfo("","filmName",20);
         for(FilmInfo f:queryResult) {
             System.out.println(f.toString());
         }

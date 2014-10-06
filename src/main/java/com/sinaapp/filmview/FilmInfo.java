@@ -10,9 +10,21 @@ public class FilmInfo {
     private double score;
     private String filmIntro;
     private String filmReview;
-
-
     private String picUrl;
+    private int id;
+
+    public FilmInfo(String filmName, String director, String starring, String filmType, String filmTime, double score, String filmIntro, String filmReview, String picUrl, int id) {
+        this.filmName = filmName;
+        this.director = director;
+        this.starring = starring;
+        this.filmType = filmType;
+        this.filmTime = filmTime;
+        this.score = score;
+        this.filmIntro = filmIntro;
+        this.filmReview = filmReview;
+        this.picUrl = picUrl;
+        this.id = id;
+    }
 
     public FilmInfo(String filmName, String director, String starring, String filmType, String filmTime, double score, String filmIntro, String filmReview, String picUrl) {
         this.filmName = filmName;
@@ -26,8 +38,7 @@ public class FilmInfo {
         this.picUrl = picUrl;
     }
 
-    @Override
-    public String toString() {
+    public String toSQLString() {
         return '\"' + filmName + '\"' + ',' +
                 '\"' + director + '\"' + ',' +
                 '\"' + starring + '\"' + ',' +
@@ -38,6 +49,29 @@ public class FilmInfo {
                 '\"' + filmReview + '\"' + ',' +
                 '\"' + picUrl + '\"'
                 ;
+    }
+
+    @Override
+    public String toString() {
+        return '\"' + id + '\"' + ',' +
+                '\"' + filmName + '\"' + ',' +
+                '\"' + director + '\"' + ',' +
+                '\"' + starring + '\"' + ',' +
+                '\"' + filmType + '\"' + ',' +
+                '\"' + filmTime + '\"' + ',' +
+                +score + ',' +
+                '\"' + filmIntro + '\"' + ',' +
+                '\"' + filmReview + '\"' + ',' +
+                '\"' + picUrl + '\"'
+                ;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPicUrl() {

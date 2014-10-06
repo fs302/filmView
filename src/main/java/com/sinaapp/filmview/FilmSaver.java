@@ -73,9 +73,11 @@ public class FilmSaver extends ActionSupport{
                 try {
                     Statement statement = sqlconn.createStatement();
 
-                    String sql = "INSERT INTO " + tableName + " VALUES (" +
-                            filmInfo.toString() + ")";
+                    String sql = "INSERT INTO " + tableName +
+                            "(`filmName`, `director`, `starring`, `filmType`, `filmTime`, `score`, `filmIntro`, `filmReview`, `picUrl`)  " +
+                            "VALUES (" + filmInfo.toSQLString() + ")";
 
+                    logger.info("[saveFilm] "+sql);
                     // 执行SQL语句
                     int rt = statement.executeUpdate(sql);
 
@@ -110,8 +112,9 @@ public class FilmSaver extends ActionSupport{
 
                 // 执行SQL语句
                 ResultSet rs = statement.executeQuery(sql);
-                logger.info("[CHeckIfNotExist]: "+!rs.next());
-                return !rs.next();
+                boolean NotExist = !rs.next();
+                logger.info("[CHeckIfNotExist]: "+ NotExist);
+                return NotExist;
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (Exception e) {

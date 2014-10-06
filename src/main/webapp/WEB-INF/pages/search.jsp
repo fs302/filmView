@@ -102,18 +102,30 @@
                     <s:iterator value="%{filmInfos}" id="film"   status="status">
                         <tr>
                             <td style="width:22%">
-                                <div class="row center">id:<s:property value='#status.index+1'/></div>
+                                <div class="row center"> id:<s:property value='#status.index+1'/>
+
+                                </div>
                                 <div class="row center"><img src="<%=basepath%>pics<s:property value='picUrl' escape="false"/>" /></div>
                                 <div class="row center">上映时间：<s:property value='filmTime' escape="false"/></div>
                                 <div class="row center">类型：<s:property value='filmType' escape="false"/></div>
                                 <div class="row center">评分：<s:property value='score'/></div>
-
+                                <div class="row center">
+                                <form action="delete.action" method="post">
+                                    <input name="id" value="<s:property value='id'/>" type="hidden"/>
+                                    <input name="query" value="<s:property value='filmName' escape="false"/>" type="hidden">
+                                    <input name="type" value="filmName" type="hidden">
+                                    <button type="submit" class="btn btn-default btn-sm btn-danger">删除</button>
+                                </form>
+                                </div>
                             </td>
                             <td><table class="table-hover">
-                                <tr class="success"><td  align=center ><h4><s:property value='%{filmName}' escape="false"/></h4></td></tr>
+                                <tr class="success"><td  align=center>
+                                        <h4><s:property value='%{filmName}' escape="false"/></h4>
+                                </td></tr>
                                 <tr class="active"><td>导演：<s:property value='%{director}' escape="false"/></td></tr>
                                 <tr class="active"><td>主演：<s:property value='starring' escape="false"/></td></tr>
                                 <tr class="info"><td>剧情简介:<br/><s:property value='filmIntro' escape="false"/> </td></tr>
+                                <tr class="info"><td>精彩评论:<blockquote><s:property value='filmReview' escape="false"/> </blockquote></td></tr>
                             </table>
                             </td>
                         </tr>
