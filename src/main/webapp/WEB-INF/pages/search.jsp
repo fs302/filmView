@@ -120,7 +120,7 @@
                             </td>
                             <td><table class="table-hover">
                                 <tr class="success"><td  align=center>
-                                        <h4><s:property value='%{filmName}' escape="false"/></h4>
+                                        <h3><s:property value='%{filmName}' escape="false"/></h3>
                                 </td></tr>
                                 <tr class="active"><td>导演：<s:property value='%{director}' escape="false"/></td></tr>
                                 <tr class="active"><td>主演：<s:property value='starring' escape="false"/></td></tr>
