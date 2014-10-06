@@ -78,7 +78,7 @@
                         <h1>保存失败TT，请重试。</h1>
                     </s:else>
                     <div class="col-md-3">
-                        <a href="newFilm"><button class="btn btn-danger">返回</button></a>
+                        <a href="newFilm"><button class="btn btn-danger"><span class="glyphicon glyphicon-step-backward"></span> 返回</button></a>
                     </div>
                 </div>
             </div>

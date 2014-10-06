@@ -69,7 +69,7 @@
                     <p class="bullet-concerns-title"><a href="http://movie.douban.com/" class="Douban">Douban Film URL</a></p>
                     <div class="url-form">
                         <div class="row">
-                            <form action="film_add" method="post">
+                            <form action="film_add" method="get">
                                 <div class="col-md-9"><input name="url" class="form-control url-form" placeholder="Enter the douban page url">
                                     <div class="help-block"><em>A second time, a film crawled for you.</em></div>
                                 </div>

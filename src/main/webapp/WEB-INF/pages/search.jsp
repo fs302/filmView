@@ -94,19 +94,21 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th style="width:15%"></th>
+                        <th style="width:22%"></th>
                         <th ></th>
                     </tr>
                     </thead>
                     <tbody>
                     <s:iterator value="%{filmInfos}" id="film"   status="status">
                         <tr>
-                            <td><table><tr><td align=center>【<s:property value='#status.index+1'/>】</td></tr>
-                                <tr><td align=center><img src="<%=basepath%>pics<s:property value='picUrl' escape="false"/>" /></td></tr>
-                                <tr><td align=center>上映时间：<s:property value='filmTime' escape="false"/></td></tr>
-                                <tr><td align=center>类型：<s:property value='filmType' escape="false"/></td></tr>
-                                <tr><td align=center>评分：<s:property value='score'/></td></tr>
-                            </table></td>
+                            <td style="width:22%">
+                                <div class="row center">id:<s:property value='#status.index+1'/></div>
+                                <div class="row center"><img src="<%=basepath%>pics<s:property value='picUrl' escape="false"/>" /></div>
+                                <div class="row center">上映时间：<s:property value='filmTime' escape="false"/></div>
+                                <div class="row center">类型：<s:property value='filmType' escape="false"/></div>
+                                <div class="row center">评分：<s:property value='score'/></div>
+
+                            </td>
                             <td><table class="table-hover">
                                 <tr class="success"><td  align=center ><h4><s:property value='%{filmName}' escape="false"/></h4></td></tr>
                                 <tr class="active"><td>导演：<s:property value='%{director}' escape="false"/></td></tr>

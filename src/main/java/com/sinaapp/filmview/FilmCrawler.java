@@ -1,12 +1,15 @@
 package com.sinaapp.filmview;
 
+import com.alibaba.common.logging.Logger;
+import com.alibaba.common.logging.LoggerFactory;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -17,11 +20,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Author: fanshen.fs
@@ -29,11 +27,12 @@ import java.util.List;
  */
 public class FilmCrawler extends ActionSupport {
 
+    private static final Logger logger = LoggerFactory.getLogger(FilmCrawler.class);
+
     String url;
     String filmHtmlDoc;
     FilmInfo filmInfo;
     String callback;
-    String saved;
 
     public String getUrl() {
         return url;
@@ -67,22 +66,15 @@ public class FilmCrawler extends ActionSupport {
         this.callback = callback;
     }
 
-    public String getSaved() {
-        return saved;
-    }
-
-    public void setSaved(String saved) {
-        this.saved = saved;
-    }
-
     public String fetch() throws IOException {
+        if (url==null){
+            callback="false";
+            return SUCCESS;
+        }
         String filmUrl = URLDecoder.decode(url, "UTF-8");
         Connection conn = Jsoup.connect(filmUrl);
         Document doc = conn.get();
 
-//        SaeFetchUrl fetch = new SaeFetchUrl();
-//        String html = fetch.fetch(filmUrl);
-//        Document doc = Jsoup.parse(html);
         filmInfo = getFilmFromDocument(doc);
         if (filmInfo != null) {
             filmHtmlDoc = filmInfo.toString();
@@ -98,7 +90,7 @@ public class FilmCrawler extends ActionSupport {
 
         try {
             String filmName = doc.select("#content > h1 > span:nth-child(1)").text();  // 电影名
-            System.out.println(filmName);
+            logger.info("[getFilmFromDocument] " + filmName);
             String director = doc.select("#info > span:nth-child(1) > a").text();   // 导演
             String starring = doc.select("#info > span:nth-child(5)").text();          // 主角
             String filmType = doc.getElementsByAttributeValue("property", "v:genre").text(); //电影类型
@@ -112,12 +104,14 @@ public class FilmCrawler extends ActionSupport {
             if (filmIntro.isEmpty())
                 filmIntro = doc.select("#link-report > span:nth-child(1)").text().replaceAll("\"", "\'");
             if (filmIntro.isEmpty()) {
-                System.out.println(filmName + "can not be analysed.");
+                logger.warn("[getFilmFromDocument] " + filmName + "can not be analysed.");
                 return null;
             }
             String filmReview = doc.select("#hot-comments > div:nth-child(1) > div > p").text().replaceAll("\"", "\'"); //电影评语
             String picUrl = doc.select("#mainpic > a > img").attr("src");
-            if (picUrl != null){
+            if (picUrl == null){
+                picUrl = "";
+            }else {
                 try {
                     savePic(picUrl);
                 } catch (Exception e) {
@@ -125,80 +119,15 @@ public class FilmCrawler extends ActionSupport {
                 }
                 picUrl = picUrl.substring(picUrl.lastIndexOf("/"));
             }
-            else{
-                picUrl = "";
-            }
             FilmInfo film = new FilmInfo(filmName, director, starring, filmType, filmTime, score, filmIntro, filmReview,picUrl);
-            System.out.println("getFilmFromDocument: " + film);
+            logger.info("[getFilmFromDocument]: " + film);
             return film;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("[getFilmFromDocument] ",e);
             return null;
         }
     }
 
-    public String saveFilm() throws IOException {
-
-        String filmUrl = URLDecoder.decode(url, "UTF-8");
-        System.out.println(filmUrl);
-        Connection conn = Jsoup.connect(filmUrl);
-        Document doc = conn.get();
-        filmInfo = getFilmFromDocument(doc);
-
-        saved = "false";
-        String tableName = "film";
-        java.sql.Connection sqlconn = Search.getConnection();
-        if (filmInfo != null && sqlconn != null) {
-            if (CheckIfNotExist(sqlconn, tableName, filmInfo)){
-                try {
-                    Statement statement = sqlconn.createStatement();
-
-                    String sql = "INSERT INTO " + tableName + " VALUES (" +
-                            filmInfo.toString() + ")";
-
-                    // 执行SQL语句
-                    int rt = statement.executeUpdate(sql);
-                    System.out.println("rt:" + rt);
-                    if (rt == 1) {
-                        saved = "true";
-                    } else {
-                        saved = "false";
-                    }
-                    sqlconn.close();
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            else {
-                saved = "Exists";
-            }
-        }
-        return SUCCESS;
-    }
-
-    public boolean CheckIfNotExist(java.sql.Connection sqlconn, String tableName, FilmInfo filmInfo) {
-        if (sqlconn != null) {
-            try {
-                Statement statement = sqlconn.createStatement();
-
-                String sql = "SELECT * FROM " + tableName + " WHERE filmName=" + "\'" + filmInfo.getFilmName() + "\'";
-
-                System.out.println(sql);
-
-                // 执行SQL语句
-                ResultSet rs = statement.executeQuery(sql);
-                return !rs.next();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
-    }
     public static void savePic(String picUrl) throws Exception {
 
         ClassLoader classLoader = Thread.currentThread()
@@ -216,8 +145,8 @@ public class FilmCrawler extends ActionSupport {
         String PIC_DIR = SERVLET_CONTEXT_PATH +"pics";
 
         String fileName = picUrl.substring(picUrl.lastIndexOf("/"));
-        String filePath = PIC_DIR + "/" + fileName;
-        System.out.println(filePath);
+        String filePath = PIC_DIR + fileName;
+        logger.info("[savePic] " + filePath);
         BufferedOutputStream out = null;
         byte[] bit = getByte(picUrl);
         if (bit.length > 0) {
@@ -234,21 +163,25 @@ public class FilmCrawler extends ActionSupport {
         }
     }
 
+    private static final int TIME_OUT = 5000;
+
     public static byte[] getByte(String uri) throws Exception{
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet(uri);
-        CloseableHttpResponse response = httpClient.execute(httpGet);
+        HttpClient client = new DefaultHttpClient();
+        client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, TIME_OUT);
+        HttpGet get = new HttpGet(uri);
+        get.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, TIME_OUT);
         try {
+            HttpResponse response = client.execute(get);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     return EntityUtils.toByteArray(entity);
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } finally{
-            response.close();
+        } finally {
+            client.getConnectionManager().shutdown();
         }
         return new byte[0];
     }

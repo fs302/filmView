@@ -3,7 +3,7 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
     <!--<constant name="struts.i18n.encoding" value="GBK"/>-->
     <package name="default" extends="struts-default" namespace="/">
         <default-action-ref name="home" />
@@ -19,7 +19,7 @@
         <action name="film_add" class="com.sinaapp.filmview.FilmCrawler" method="fetch">
             <result>/WEB-INF/pages/film_info.jsp</result>
         </action>
-        <action name="save_film" class="com.sinaapp.filmview.FilmCrawler" method="saveFilm">
+        <action name="save_film" class="com.sinaapp.filmview.FilmSaver" method="saveFilm">
             <result>/WEB-INF/pages/save_film.jsp</result>
         </action>
         <action name="login">

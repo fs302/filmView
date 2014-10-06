@@ -72,36 +72,39 @@
                         <s:if test="%{#callback=='true'}">
                             <h1 class="text-center">电影信息</h1>
                             <table class="table">
-                                <thead><tr><th style="width:20%">Property</th><th>Content</th></tr></thead>
-                                <tr><td>电影名称</td><td><s:property value='filmInfo.filmName'/></td></tr>
+                                <thead><tr><th style="width:20%"></th><th></th></tr></thead>
+                                <tr><td><img src="<%=basepath%>pics<s:property value='filmInfo.picUrl' escape="false"/>" /></td>
+                                    <td><table><tr><td style="width:25%">电影名称</td><td><s:property value='filmInfo.filmName'/></td></tr>
                                 <tr><td>导演</td><td><s:property value='filmInfo.director'/></td></tr>
                                 <tr><td>主演</td><td><s:property value='filmInfo.starring'/></td></tr>
                                 <tr><td>电影类型</td><td><s:property value='filmInfo.filmType'/></td></tr>
-                                <tr><td>上映时间</td><td><s:property value='filmInfo.filmTime'/></td></tr>
+                                <tr><td>上映时间</td><td><s:property value='filmInfo.filmTime'/></td></tr></table>
+                                </td></tr>
+                            </table>
+                            <table class="table">
+                                <thead><tr><th style="width:20%"></th><th></th></tr></thead>
                                 <tr><td>电影简介</td><td><s:property value='filmInfo.filmIntro'/></td></tr>
                                 <tr><td>评分</td><td><s:property value='filmInfo.score'/></td></tr>
                                 <tr><td>评价</td><td><s:property value='filmInfo.filmReview'/></td></tr>
                             </table>
                             <h4 class="text-center">如需保存该电影，请点击保存按钮。</h4>
 
-                            <div class="row">
-                                <div class="col-md-6 col-md-offset-2">
-                                    <div class="col-md-3">
-                                        <form action="save_film.action" method="post">
-                                            <input name="url" value="<s:property value='url'/>" type="hidden" />
-                                            <button class="btn btn-success"  type="submit" >保存</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="newFilm"><button class="btn btn-danger">返回</button></a>
-                                    </div>
+                            <div class="row center">
+                                <div class="col-md-6">
+                                    <form action="save_film.action" method="post">
+                                        <input name="url" value="<s:property value='url'/>" type="hidden" />
+                                        <button class="btn btn-success"  type="submit" ><span class="glyphicon glyphicon-save"></span> 保存</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                     <a href="newFilm"><button class="btn btn-danger"><span class="glyphicon glyphicon-step-backward"></span> 返回</button></a>
                                 </div>
                             </div>
 
                         </s:if>
                         <s:else>
                             <h1 class="text-center" style="color:#fff">抱歉，无法解析该页面。</h1>
-                            <a href="newFilm"><button class="btn btn-danger">返回</button></a>
+                            <a href="newFilm"><button class="btn btn-danger"><span class="glyphicon glyphicon-step-backward"></span> 返回</button></a>
                         </s:else>
                     </div>
                 </div>
