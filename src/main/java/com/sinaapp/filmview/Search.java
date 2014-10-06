@@ -51,7 +51,7 @@ public class Search extends ActionSupport {
             filmInfos = getFilmInfo(query, type,-1);
         }
         else {
-            List<FilmInfo> queryResult = getFilmInfo("","filmName",20);
+            List<FilmInfo> queryResult = getFilmInfo("","filmName",10);
             if (queryResult != null && queryResult.size()>=10){
                 filmInfos = queryResult.subList(0,10);
             }
