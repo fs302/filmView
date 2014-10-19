@@ -1,10 +1,10 @@
 package com.sinaapp.filmview;
 
-import com.alibaba.common.logging.Logger;
-import com.alibaba.common.logging.LoggerFactory;
 import com.opensymphony.xwork2.ActionSupport;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +21,7 @@ import java.sql.Statement;
  */
 public class FilmSaver extends ActionSupport{
 
-    private static final Logger logger =  LoggerFactory.getLogger(FilmSaver.class);
+    private static final Logger logger = LogManager.getLogger(FilmSaver.class);
 
     FilmInfo filmInfo;
     String url;

@@ -1,7 +1,7 @@
 package com.sinaapp.filmview;
 
-import com.alibaba.common.logging.Logger;
-import com.alibaba.common.logging.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import java.sql.DriverManager;
  */
 public class SQLConnector {
 
-    private static final Logger logger = LoggerFactory.getLogger(SQLConnector.class);
+    private static final Logger logger = LogManager.getLogger(SQLConnector.class);
 
     public static Connection getConnection(){
         Connection conn = null;

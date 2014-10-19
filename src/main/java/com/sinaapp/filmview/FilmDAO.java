@@ -1,8 +1,8 @@
 package com.sinaapp.filmview;
 
-import com.alibaba.common.logging.Logger;
-import com.alibaba.common.logging.LoggerFactory;
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import java.sql.Statement;
  */
 public class FilmDAO extends ActionSupport {
 
-    private static final Logger logger =  LoggerFactory.getLogger(FilmDAO.class);
+    private static final Logger logger = LogManager.getLogger(FilmDAO.class);
 
     String filmName;
     String callback;

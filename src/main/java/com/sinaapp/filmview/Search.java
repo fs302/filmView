@@ -1,8 +1,9 @@
 package com.sinaapp.filmview;
 
-import com.alibaba.common.logging.Logger;
-import com.alibaba.common.logging.LoggerFactory;
+
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class Search extends ActionSupport {
 
-    private static final Logger logger = LoggerFactory.getLogger(Search.class);
+    private static final Logger logger = LogManager.getLogger(Search.class);
 
     String type;
     String query;

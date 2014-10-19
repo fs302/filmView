@@ -1,7 +1,5 @@
 package com.sinaapp.filmview;
 
-import com.alibaba.common.logging.Logger;
-import com.alibaba.common.logging.LoggerFactory;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -11,6 +9,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,7 +27,7 @@ import java.net.URLDecoder;
  */
 public class FilmCrawler extends ActionSupport {
 
-    private static final Logger logger = LoggerFactory.getLogger(FilmCrawler.class);
+    private static final Logger logger = LogManager.getLogger(FilmCrawler.class);
 
     String url;
     String filmHtmlDoc;
